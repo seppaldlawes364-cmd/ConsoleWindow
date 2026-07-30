@@ -22,6 +22,7 @@ class Shape{
         this -> pos.x += pos.x;
     }
     bool intersects(Shape shape){
+        //look if the pos+size etc. intersect
         if(this->pos.x+this->size.x >  shape.pos.x|| this-> pos.x > shape.pos.x+shape.size.x){
             if(this -> pos.y+this->size.y >  shape.pos.y|| this -> pos.y > shape.pos.y+shape.size.y){
                 return true;
@@ -30,6 +31,11 @@ class Shape{
         return false;
     }
     void rotate(int angle){
+        //please dont look for comments i dont know either how i got this working
+        //please dont look for comments i dont know either how i got this working
+        //please dont look for comments i dont know either how i got this working
+        //please dont look for comments i dont know either how i got this working
+        //please dont look for comments i dont know either how i got this working
         if(angle > 360 || angle < -360){
             std::cerr << "Failed to set angle Reason: angle over 360°";
             return;
@@ -71,11 +77,12 @@ class Shape{
     }
 };
 class Window{
+    //going to make the size class and window size compatible in the future the same for the shape class
     const Vec2d size = {19,10};
     //const int WinX = 19;
     //const int WinY = 10;
     char window[10][19];
-    float delayPerFrame = 1/60;
+    float delayPerFrame = 1/5; // standard framerate 5fps if no fps is specified
     public:
     void setMaxFramerate(const float fps){
         //set the delay for each frame
@@ -84,7 +91,8 @@ class Window{
     void clear(char background){
         //convert seconds into microseconds and sleep for that time
         /*this is not located in the display function to leave space 
-        in case the user needs to add something for example for debuging*/
+        in case the user needs to add something for example for debuging
+        please dont haunt me for not using proper delta time*/
         usleep(delayPerFrame*1000000);
         //clear current frame
         system("clear");
@@ -109,6 +117,7 @@ class Window{
         }
     }
     void setOutline(char outline){
+        //set an outline at every side
         for(int y = 0; y < size.y; y++){
             for(int x = 0; x < size.x; x++){
                 if(y == 0 || y == size.y-1){
@@ -137,9 +146,11 @@ class Window{
         
     }
     char getPixel(Vec2d coordinate){
+        //self explainatory 
         return window[coordinate.y][coordinate.x];
     }
 };
+//code example and syntax
 class Game{
     private:
     Window *window = new Window;
